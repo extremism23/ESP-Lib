@@ -124,12 +124,12 @@ function ESP:AddObjectListener(parent, options)
 	if options.Recursive then
 		parent.DescendantAdded:Connect(NewListener)
 		for i,v in pairs(parent:GetDescendants()) do
-			coroutine.wrap(ESP.NewListener)(v, options)
+			coroutine.wrap(function() ESP:NewListener(v, options) end)()
 		end
 	else
 		parent.ChildAdded:Connect(NewListener)
 		for i,v in pairs(parent:GetChildren()) do
-			coroutine.wrap(ESP.NewListener)(v, options)
+			coroutine.wrap(function() ESP:NewListener(v, options) end)()
 		end
 	end
 end
