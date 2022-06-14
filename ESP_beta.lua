@@ -98,6 +98,7 @@ end
 
 function ESP:NewListener(c, options)
 	-- c is an obj
+	table.foreach(options,print)
 	if type(options.Type) == "string" and c:IsA(options.Type) or options.Type == nil then
 		if type(options.Name) == "string" and c.Name == options.Name or options.Name == nil then
 			if not options.Validator or options.Validator(c) then
